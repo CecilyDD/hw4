@@ -1,17 +1,20 @@
-<h1>New User Account</h1>
+<%= form_with(url: signup_path, method: :post) do |form| %>
+  <%= form.label :first_name %>
+  <%= form.text_field :first_name, class: 'form-control' %>
 
-<form action="/users" method="post">
-  <p>
-    <label for="username">Username</label>
-    <input type="text" name="username" id="username">
-  </p>
-  <p>
-    <label for="email">Email</label>
-    <input type="text" name="email" id="email">
-  </p>
-  <p>
-    <label for="password">Password</label>
-    <input type="text" name="password" id="password">
-  </p>
-  <button>Signup</button>
-</form>
+  <%= form.label :last_name %>
+  <%= form.text_field :last_name, class: 'form-control' %>
+
+  <%= form.label :email %>
+  <%= form.email_field :email, class: 'form-control' %>
+
+  <%= form.label :password %>
+  <%= form.password_field :password, class: 'form-control' %>
+
+  <%= form.label :password_confirmation %>
+  <%= form.password_field :password_confirmation, class: 'form-control' %>
+
+  <div class="actions">
+    <%= form.submit "Signup", class: 'btn btn-primary' %>
+  </div>
+<% end %>

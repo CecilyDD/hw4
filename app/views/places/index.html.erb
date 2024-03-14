@@ -1,11 +1,17 @@
-<h1>Places</h1>
+<!-- app/views/places/index.html.erb -->
+<h1>All Places</h1>
 
-<ul>
-  <% for place in @places %>
-    <li><a href="/places/<%= place["id"] %>"><%= place["name"] %></a></li>
-  <% end %>
-</ul>
+<% @places.each do |place| %>
+  <div>
+    <%= link_to place_path(place) do %>
+      <h2><%= place.name %></h2>
+      <!-- Add more details if needed -->
+    <% end %>
+  </div>
+<% end %>
 
-<p>
-  <a href="/places/new">New place</a>
-</p>
+<% if current_user %>
+  <p>
+    <%= link_to "New Place", new_place_path %>
+  </p>
+<% end %>

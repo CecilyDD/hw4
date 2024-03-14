@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Tacostagram Final</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Your App</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap JavaScript -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <!-- Your head content here -->
+</head>
 
-    <link rel="stylesheet" href="/stylesheets/application.css">
-  </head>
+<body>
+  <!-- Include the navbar -->
+  <%= render 'layouts/navbar' %>
 
-  <body>
-    <div>
-      <%= flash["notice"] %>
-    </div>
-    <div>
-      <a href="/">Home</a>
-      <a href="/logout">Logout</a>
-      <a href="/login">Login</a>
-      <a href="/users/new">Signup</a>
-    </div>
+  <!-- Main content -->
+  <div class="container">
+    <!-- Render flash messages if any -->
+    <%= render 'layouts/flash_messages' %>
 
+    <!-- Yield the main content -->
     <%= yield %>
-  </body>
+  </div>
+</body>
 </html>
