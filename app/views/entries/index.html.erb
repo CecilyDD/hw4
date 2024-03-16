@@ -1,29 +1,22 @@
+<!-- app/views/entries/index.html.erb -->
 <div class="row">
   <% @entries.each do |entry| %>
     <div class="col-sm-6 col-md-3">
       <h4>
-        <%# Find user who created the entry %>
-        <% user = User.find_by(id: entry.user_id) %>
-        <%# Handle cases where the user might not exist %>
-        <% if user %>
-          <%= user.first_name %>
+        <%# Display user who created the entry %>
+        <% if entry.user.present? %>
+          <%= entry.user.email %>
         <% else %>
           Anonymous
         <% end %>
       </h4>
       
-      <%# Conditionally display attached file if entry.uploaded_file.attached? %>
+      <%# Check if an image is attached to the entry %>
       <% if entry.uploaded_file.attached? %>
-        <%= image_tag entry.uploaded_file, class: "img-fluid" %>
-      <%# Otherwise display a placeholder image or leave it blank %>
+        <img src="<%= url_for(entry.uploaded_file) %>" class="img-fluid">
       <% else %>
-        <img src="placeholder_image_url" class="img-fluid">
+        No image attached.
       <% end %>
-
-      <div class="row">
-        <!-- Additional content or functionalities can be added here -->
-        <!-- Likes, comments, etc. -->
-      </div>
 
       <!-- Additional content -->
       <p><%= entry.description %></p>

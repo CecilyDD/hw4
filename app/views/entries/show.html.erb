@@ -1,0 +1,14 @@
+<!-- app/views/entries/show.html.erb -->
+<h1>Entry Details</h1>
+
+<div>
+  <p><strong>Title:</strong> <%= @entry.title %></p>
+  <p><strong>Description:</strong> <%= @entry.description %></p>
+  <p><strong>User:</strong> <%= @entry.user.email %></p>
+  
+  <% if @entry.uploaded_file.attached? %>
+    <%= image_tag @entry.uploaded_file, class: "img-fluid" %>
+  <% else %>
+    No image attached.
+  <% end %>
+</div>
