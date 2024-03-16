@@ -1,4 +1,3 @@
-# config/routes.rb
 Rails.application.routes.draw do
   # Authentication routes
   get '/login', to: 'sessions#new'

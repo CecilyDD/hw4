@@ -1,25 +1,30 @@
 <h1>New Entry</h1>
 
-<form action="/places/<%= params[:place_id] %>/entries" method="post">
+<%= form_with(model: [@place, @entry], url: place_entries_path(@place), local: true) do |form| %>
   <!-- Include a CSRF token for security -->
-  <%= csrf_meta_tags %>
+  <%= form.hidden_field :place_id, value: params[:place_id] %>
 
-  <input type="hidden" name="place_id" value="<%= params[:place_id] %>">
+  <div class="mb-3">
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-control", id: "title_input" %>
+  </div>
 
-  <p>
-    <label for="title_input">Title</label>
-    <input type="text" name="entry[title]" id="title_input">
-  </p>
+  <div class="mb-3">
+    <%= form.label :description, class: "form-label" %>
+    <%= form.text_field :description, class: "form-control", id: "description_input" %>
+  </div>
 
-  <p>
-    <label for="description_input">Description</label>
-    <input type="text" name="entry[description]" id="description_input">
-  </p>
+  <div class="mb-3">
+    <%= form.label :occurred_on, class: "form-label" %>
+    <%= form.date_field :occurred_on, class: "form-control", id: "occurred_on_input" %>
+  </div>
 
-  <p>
-    <label for="occurred_on_input">Occurred On</label>
-    <input type="date" name="entry[occurred_on]" id="occurred_on_input">
-  </p>
+  <div class="mb-3">
+    <%= form.label :uploaded_file, class: "form-label" %>
+    <%= form.file_field :uploaded_file, class: "form-control" %>
+  </div>
 
-  <button type="submit">Save</button>
-</form>
+  <div class="actions">
+    <%= form.submit "Save", class: "btn btn-primary" %>
+  </div>
+<% end %>
