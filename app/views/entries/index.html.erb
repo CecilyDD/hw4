@@ -1,13 +1,32 @@
-<h1>Entries</h1>
+<div class="row">
+  <% @entries.each do |entry| %>
+    <div class="col-sm-6 col-md-3">
+      <h4>
+        <%# Find user who created the entry %>
+        <% user = User.find_by(id: entry.user_id) %>
+        <%# Handle cases where the user might not exist %>
+        <% if user %>
+          <%= user.first_name %>
+        <% else %>
+          Anonymous
+        <% end %>
+      </h4>
+      
+      <%# Conditionally display attached file if entry.uploaded_file.attached? %>
+      <% if entry.uploaded_file.attached? %>
+        <%= image_tag entry.uploaded_file, class: "img-fluid" %>
+      <%# Otherwise display a placeholder image or leave it blank %>
+      <% else %>
+        <img src="placeholder_image_url" class="img-fluid">
+      <% end %>
 
-<% @entries.each do |entry| %>
-  <div class="entry">
-    <h2><%= entry.title %></h2>
-    <p><%= entry.description %></p>
-    <% if entry.uploaded_file.attached? %>
-      <img src="<%= url_for(entry.uploaded_file) %>" class="img-fluid">
-    <% else %>
-      No image attached.
-    <% end %>
-  </div>
-<% end %>
+      <div class="row">
+        <!-- Additional content or functionalities can be added here -->
+        <!-- Likes, comments, etc. -->
+      </div>
+
+      <!-- Additional content -->
+      <p><%= entry.description %></p>
+    </div>
+  <% end %>
+</div>
